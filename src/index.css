@@ -11,13 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.App{
+  max-width:840px;
+  margin:0 auto;
+}
 img{
-  height:32px;
-  width:32px;
+  height:16px;
+  width:16px;
 }
 button{
-  width:48px;
-  height:48px;
+  cursor:pointer;
+  font-size:16px;
+  background:white;
+  border-radius:8px;
+}
+.plus{
+  width:32px;
+  height:32px;
   border-radius:32px;
   cursor:pointer;
   user-select:none;
@@ -25,4 +35,29 @@ button{
 button:focus{
   outline:0;
   background:#ccf;
+}
+.wave{
+  background:#ddf;
+  padding:10px;
+  border-radius:5px;
+  border:3px solid #333;
+  margin-bottom:10px;
+}
+input{
+  width:50px;
+}
+.export{
+  width:100%
+}
+textarea{
+  width:95%;
+}
+.right{
+  display:inline-block;
+}
+.input-txt{
+  width:100px;
+}
+.element{
+  margin:10px 0px;
 }
