@@ -23,10 +23,10 @@ class Condition extends React.Component{
     // ))
     let secondsDisplay;
     if(this.props.condition === "wait_seconds"){
-        secondsDisplay = <div>
+        secondsDisplay = <span>
             <label> Seconds: </label>
             <input onChange={this.changeSeconds} value = {this.props.seconds} type="number"></input>
-        </div>
+        </span>
     }
     return (
         <span>

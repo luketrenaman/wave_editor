@@ -4,7 +4,7 @@ class Enemy extends React.Component{
     super(props);
   }
   changeZombie = (e) => {
-    this.props.editProperty("ebeny",e.target.value);
+    this.props.editProperty("enemy",e.target.value);
   }
   changeIntensity = (e) => {
     this.props.editProperty("intensity",e.target.value);
