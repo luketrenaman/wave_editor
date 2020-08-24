@@ -33,6 +33,43 @@ class Wave extends React.Component{
 
     }
   }
+  calculateDifficulty(){
+    function duration(obj){
+      let type = obj.zombie;
+      let map = {
+        "normal":10,
+        "behemoth":2,
+        "carb_loader":15,
+        "torso":4,
+        "dog":15
+      }
+      return 180/map[type];
+    }
+    //duration = 180/speed
+    let wave = Object.assign([],this.props.wave);
+    /*wave.push({
+      "type":"condition",
+      "condition":"wait_until_empty"
+    })*/
+    wave = wave.filter(function(component){
+      return component.type === "enemy" && component.zombie !== "mouse" 
+      //|| (component.type === "condition" && component.condition === "wait_until_empty");
+    });
+    let keypresses = 0; 
+    let time = 180/10;
+    for(let i = 0; i < wave.length;i++){
+        time += (wave[i].delay || this.props.delay) * wave[i].amount;
+        let ins = wave[i].intensity;
+        if (wave[i].zombie === "normal"){
+          ins += 2
+        }
+        if(wave[i].zombie === "behemoth"){
+          ins *= 6
+        }
+        keypresses += (ins + 1) * wave[i].amount;
+    }
+    return (keypresses / time).toFixed(4) + " ingredients / s";
+  }
   render() {
     // const waveList = props.data.map(wave => (
     //   <Wave id={wave.id} delay={wave.delay} wave={wave.wave}>
@@ -50,6 +87,7 @@ class Wave extends React.Component{
         <b>Wave delay: </b><input onChange={(e) => {
           this.props.changeWave(e.target.value,"delay");
         }} value={this.props.delay}></input>
+        <b> Average difficulty: {this.calculateDifficulty()}</b>
         {elemList}
         <button onClick={this.addElement}>Add element</button>
       </div>

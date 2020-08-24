@@ -20,12 +20,12 @@ class App extends React.Component{
             "delay": 2.5,
             "wave": [{
                 "type":"enemy",
-                "enemy": "normal",
+                "zombie": "normal",
                 "intensity": 1,
                 "amount": 5
             }, {
                 "type":"enemy",
-                "enemy": "normal",
+                "zombie": "normal",
                 "intensity": 2,
                 "amount": 5
             }]

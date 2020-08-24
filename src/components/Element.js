@@ -16,26 +16,22 @@ class Element extends React.Component{
           "intensity": 4,
           "amount": 5
         };
-        break;
       case 1:
         return {
           "type":"dialogue",
           "expression": "happy",
           "text": "What a rush! I made it through the day."
         };
-        break;
       case 2:
         return {
           "type":"condition",
           "condition": "wait_until_empty"
         };
-        break;
       case 3:
         return {
           "type":"animation",
           "path": "shake.tscn"
-        };;
-      break;
+        };
     }
   }
   editProperty = (property,value) => {
@@ -62,7 +58,7 @@ class Element extends React.Component{
             return <Dialogue editProperty={this.editProperty} expression={this.props.data.expression} text={this.props.data.text}/>
         }
         if(type === "enemy"){
-            return <Enemy delay={this.props.data.delay || this.props.delay} editProperty={this.editProperty} type={this.props.data.type} enemy={this.props.data.enemy}
+            return <Enemy delay={this.props.data.delay || this.props.delay} editProperty={this.editProperty} type={this.props.data.type} zombie={this.props.data.zombie}
             intensity={this.props.data.intensity} amount={this.props.data.amount}/>
         }
         if(type === "animation"){

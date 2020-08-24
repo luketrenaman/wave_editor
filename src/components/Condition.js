@@ -32,11 +32,15 @@ class Condition extends React.Component{
         <span>
             <label> Condition: </label>
             <select value={this.props.condition} onChange={this.changeCondition}>
-                <option value = "wait_until_empty">No zombies on screen</option>
-                <option value = "have_robot">Have robot</option>
-                <option value = "retrieve_robot">Chance of retrieve robot</option>
-                <option value = "wait_seconds">Wait x seconds</option>
-                <option value = "end_condition">End condition</option>
+                <option value = "start">Control - Unpause game</option>
+                <option value = "pause">Control - Pause game</option>
+                <option value = "wait_until_empty">Wait - No zombies on screen</option>
+                <option value = "wait_seconds">Wait - Wait x seconds</option>
+                <option value = "have_robot">If - Have robot</option>
+                <option value = "retrieve_robot">If - Chance of retrieve robot</option>
+                <option value = "mix">Modifier - Mix following zombies</option>
+                <option value = "end_condition">End Condition</option>
+                <option value = "else_condition">Else</option>
             </select>
             {secondsDisplay}
         </span>
