@@ -6,8 +6,20 @@ class Wave extends React.Component{
     super(props);
     
   }
+  insert = (idx) => {
+    return () => {
+      let wave = this.props.wave;
+      wave.splice(idx,0,{
+        "type":"enemy",
+        "zombie": "normal",
+        "intensity": 1,
+        "amount": 5
+      });
+      this.props.changeWave(wave,"wave");
+    }
+  }
    addElement = () =>{
-     let wave = this.props.wave
+     let wave = this.props.wave;
      wave.push(    {
       "type":"enemy",
       "zombie": "normal",
@@ -19,7 +31,7 @@ class Wave extends React.Component{
 
    deleteElement = (idx) =>{
     return () => {
-      let wave = this.props.wave
+      let wave = this.props.wave;
       wave.splice(idx,1);
       this.props.changeWave(wave,"wave"); //Changes wave property to wave variable
 
@@ -27,10 +39,29 @@ class Wave extends React.Component{
   }
   editElement = (idx) =>{
     return (val) => {
-      let wave = this.props.wave
+      let wave = this.props.wave;
       wave[idx] = Object.assign({},val);
       this.props.changeWave(wave,"wave"); //Changes wave property to wave variable
 
+    }
+  }
+  swap = (idx,change) => {
+    let wave = this.props.wave;
+    let a = Object.assign({},wave[idx]);
+    let nextElem = (idx+change + wave.length) % wave.length;
+    let b = Object.assign({},wave[nextElem]);
+    this.editElement(idx)(b);
+    this.editElement(nextElem)(a);
+
+  }
+  swapBefore = (idx) => {
+    return () => {
+      this.swap(idx,-1)  
+    }
+  }
+  swapAfter = (idx) => {
+    return () => {
+      this.swap(idx,1)  
     }
   }
   calculateDifficulty(){
@@ -75,7 +106,8 @@ class Wave extends React.Component{
     //   <Wave id={wave.id} delay={wave.delay} wave={wave.wave}>
     // ))
     const elemList = this.props.wave.map((elem,idx) => (
-        <Element delay={this.props.delay} delete={this.deleteElement(idx)} edit={this.editElement(idx)} key={idx} data={elem}/>
+        <Element insert={this.insert(idx)} swapBefore={this.swapBefore(idx)} swapAfter={this.swapAfter(idx)}
+        delay={this.props.delay} delete={this.deleteElement(idx)} edit={this.editElement(idx)} key={idx} data={elem}/>
       ))
     // let flipExpanded = () => {
     //     this.setprops({expanded:!this.props.expanded})
@@ -85,7 +117,7 @@ class Wave extends React.Component{
       <h3><Button positive={!this.props.expanded} onClick={this.props.expand}/> {this.props.id.split("-").join(" ")}</h3>
       <div style={this.props.expanded ? {display:"block"} : {display:"none"}}>
         <b>Wave delay: </b><input onChange={(e) => {
-          this.props.changeWave(e.target.value,"delay");
+          this.props.changeWave(parseFloat(e.target.value),"delay");
         }} value={this.props.delay}></input>
         <b> Average difficulty: {this.calculateDifficulty()}</b>
         {elemList}

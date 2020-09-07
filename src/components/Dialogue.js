@@ -28,7 +28,7 @@ class Dialogue extends React.Component{
                 <option value = "robot">Robot</option>
             </select>
             <label> Text: </label>
-            <textarea onChange={this.changeText}>{this.props.text}</textarea>
+            <textarea onChange={this.changeText} value={this.props.text}></textarea>
         </span>
     )
   };

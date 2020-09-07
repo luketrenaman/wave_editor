@@ -15,7 +15,7 @@ class Condition extends React.Component{
     this.props.editProperty("text",e.target.value);
   }
   changeSeconds = (e) => {
-    this.props.editProperty("seconds",e.target.value);
+    this.props.editProperty("seconds",parseFloat(e.target.value));
   }
   render() {
     // const waveList = props.data.map(wave => (

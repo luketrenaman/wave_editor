@@ -12,7 +12,7 @@ code {
     monospace;
 }
 .App{
-  max-width:840px;
+  max-width:880px;
   margin:0 auto;
 }
 img{
@@ -44,16 +44,17 @@ button:focus{
   margin-bottom:10px;
 }
 input{
-  width:50px;
+  width:40px;
 }
 .export{
   width:100%
 }
 textarea{
-  width:95%;
+  width:86%;
 }
 .right{
   display:inline-block;
+  float:right;
 }
 .input-txt{
   width:100px;

@@ -49,6 +49,13 @@ class Element extends React.Component{
     this.props.edit(elem);
   }
   render() {
+    let calcDelay = ()=>{
+      if(this.props.data.hasOwnProperty("delay")){
+        return this.props.data.delay
+      } else{
+        return this.props.delay
+      }
+    }
     // const waveList = props.data.map(wave => (
     //   <Wave id={wave.id} delay={wave.delay} wave={wave.wave}>
     // ))
@@ -58,7 +65,7 @@ class Element extends React.Component{
             return <Dialogue editProperty={this.editProperty} expression={this.props.data.expression} text={this.props.data.text}/>
         }
         if(type === "enemy"){
-            return <Enemy delay={this.props.data.delay || this.props.delay} editProperty={this.editProperty} type={this.props.data.type} zombie={this.props.data.zombie}
+            return <Enemy delay={calcDelay()} editProperty={this.editProperty} type={this.props.data.type} zombie={this.props.data.zombie}
             intensity={this.props.data.intensity} amount={this.props.data.amount}/>
         }
         if(type === "animation"){
@@ -80,6 +87,9 @@ class Element extends React.Component{
             </select>
             {getType()}
             <button className="right" onClick={this.props.delete}>X</button>
+            <button className="right" onClick={this.props.swapBefore}>↑</button>
+            <button className="right" onClick={this.props.swapAfter}>↓</button>
+            <button className="right" onClick={this.props.insert}>+</button>
         </div>
     )
   };
