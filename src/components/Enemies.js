@@ -54,7 +54,7 @@ class Enemy extends React.Component{
     return (
         <span>
             <label> Enemy type: </label>
-            <select onChange={this.changeZombie}>
+            <select onChange={this.changeZombie} value={this.props.zombie}>
                 <option value="normal">Normal</option>
                 <option value="carb_loader">Carb loader</option>
                 <option value="behemoth">Behemoth</option>
