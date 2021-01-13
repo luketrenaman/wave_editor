@@ -60,6 +60,19 @@ class Element extends React.Component{
     //   <Wave id={wave.id} delay={wave.delay} wave={wave.wave}>
     // ))
     let type = this.props.data.type;
+    let typeToColor = ()=>{
+      switch(type){
+        case "dialogue":
+          return "rgb(237, 183, 33)";
+        case "enemy":
+          return "rgb(201, 97, 97)";
+        case "animation":
+          return "rgb(201, 130, 255)";
+        case "condition":
+          return "rgb(70, 217, 67)"
+        
+      }
+    }
     let getType = ()=>{
         if(type === "dialogue"){
             return <Dialogue editProperty={this.editProperty} expression={this.props.data.expression} text={this.props.data.text}/>
@@ -77,7 +90,7 @@ class Element extends React.Component{
         }
     }
     return (
-        <div className="element">
+        <div className="element" style={{borderColor:typeToColor()}}>
             <label>Type: </label>
             <select value={type} onChange={e => (this.createElement(e.target.selectedIndex))}>
                 <option value="enemy">Enemies</option>
