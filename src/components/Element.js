@@ -63,13 +63,13 @@ class Element extends React.Component{
     let typeToColor = ()=>{
       switch(type){
         case "dialogue":
-          return "rgb(237, 183, 33)";
+          return "rgb(21, 97, 125)";
         case "enemy":
-          return "rgb(201, 97, 97)";
+          return "rgb(186, 66, 2)";
         case "animation":
-          return "rgb(201, 130, 255)";
+          return "rgb(125, 21, 109)";
         case "condition":
-          return "rgb(70, 217, 67)"
+          return "rgb(59, 125, 21)"
         
       }
     }
